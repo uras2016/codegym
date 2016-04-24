@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SumDigitsTest {
+public class TestSumDigits {
 SumDigits sumDigits = new SumDigits();
     @Test
     public void testSum() throws Exception {
@@ -27,9 +27,9 @@ SumDigits sumDigits = new SumDigits();
     @Test
     public void testNegativeNumber() throws Exception {
         int a = -786;
-        int expected = -21;
+        int expected = 21;
         int result = sumDigits.sum(a);
 
-        Assert.assertEquals("Wrong result for sum of 123",expected,result );
+        Assert.assertEquals("Wrong result for sum of -786",expected,result );
     }
 }
