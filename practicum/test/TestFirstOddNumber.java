@@ -21,6 +21,13 @@ FirstOddNumber firstOddNumber = new FirstOddNumber();
         int result = firstOddNumber.find(array);
         Assert.assertEquals(expected,result);
     }
+    @Test
+    public void testFirstOddNumberWithNegativeNumber() throws Exception {
+        int expected=3;
+        int[] array = {8,2,-6,1};
+        int result = firstOddNumber.find(array);
+        Assert.assertEquals(expected,result);
+    }
 }
 
 
