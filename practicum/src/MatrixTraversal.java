@@ -5,55 +5,59 @@
 //         [9,  10, 11, 12]
 //         [13, 14, 15, 16]]
 //        вивести [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
-
 public class MatrixTraversal {
     public int[] print(int[][] input) {
-        int columnLength = input.length;
-        int rowLength = rowLength(input);
-        int step = 0;
-        int[] massive = new int[matrixSize(input)];
 
-        for (int i=0;i<columnLength/2+1;i++) {
-           try{
-            for (int right = i; right < rowLength; right++) {
-                massive[step] = input[i][right];
-                step++;
-            }
-            for (int down = i + 1; down < columnLength; down++) {
-                massive[step] = input[down][rowLength - 1];
-                step++;
-            }
-            for (int left = rowLength - 1 - 1; left >= i; left--) {
-                massive[step]=input[columnLength-1][left];
-                step++;
-            }
-            for (int up = columnLength - 1 - 1; up >= i + 1; up--){
-                massive[step] = input[up][i];
-                step++;
-            }
-           }catch (ArrayIndexOutOfBoundsException e){
+        if (input == null || input.length == 0||input[0].length==0)
+            return new int[0];
 
-           }
-            columnLength--;
-            rowLength--;
+        int n = input.length;
+        int m = input[0].length;
+        int[] massive = new int[n * m];
+
+        int f = n-1;
+        int w = m-1;
+
+        int c = 0;
+        int i = 0;
+        int j = 0;
+        int p = 0;
+
+        while (c != n*m-1)
+        {
+//            if (c >= n*m-1) break;
+
+            while (j < w)
+            {
+                massive[c++] = input[i][j];
+                j++;
             }
+            while (i < f)
+            {
+                massive[c++] = input[i][j];
+                i++;
+            }
+            while (j > p)
+            {
+                massive[c++] = input[i][j];
+                j--;
+            }
+            f--;
+            w--;
+            p++;
+            while (i > p)
+            {
+                massive[c++] = input[i][j];
+                i--;
+            }
+        }
+//        if(c == n*m-1)
+//        {
+            massive[c++] = input[i][j];
+//        }
+        for (int e : massive) {
+            System.out.print(e);
+        }
         return massive;
-    }
-
-    public int matrixSize(int[][] inputs){
-        int massiveSize = 0;
-        for (int[]mass:inputs){
-            massiveSize=massiveSize+mass.length;
-
-        }
-        return massiveSize;
-    }
-    public int rowLength(int[][] input){
-        int length = 0;
-        for (int[]mass:input){
-            if (mass.length>length)
-                length=mass.length;
-        }
-        return length;
     }
 }
