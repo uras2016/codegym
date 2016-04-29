@@ -8,7 +8,7 @@
 public class MatrixTraversal {
     public int[] print(int[][] input) {
 
-        if (input == null || input.length == 0||input[0].length==0)
+        if (input.length == 0||input[0].length==0)
             return new int[0];
 
         int n = input.length;
@@ -25,7 +25,7 @@ public class MatrixTraversal {
 
         while (c != n*m-1)
         {
-//            if (c >= n*m-1) break;
+            if (c >= n*m-1) break;
 
             while (j < w)
             {
@@ -51,10 +51,10 @@ public class MatrixTraversal {
                 i--;
             }
         }
-//        if(c == n*m-1)
-//        {
+        if(c == n*m-1)
+        {
             massive[c++] = input[i][j];
-//        }
+        }
         for (int e : massive) {
             System.out.print(e);
         }
