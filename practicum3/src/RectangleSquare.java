@@ -15,35 +15,27 @@ import java.util.List;
 public class RectangleSquare {
     public int measure(int[] x, int[] h, int[] w) {
 
-        //Коллекция, ось абсцис. В каждом элементе коллекции записана
-        //максимальная высота из всех прямоугольников, попадающих в эту координату
-        List<Integer> commonArea = new ArrayList<>();
 
-        //Перебор всех параметорв
+        List<Integer> Area = new ArrayList<>();
+
         for (int i = 0; i < x.length; i++) {
 
-            //Если очередной прямоугольник выходит за пределы
-            //коллекции (оси абсцис), то увеличить коллекцию
-            increaseCommonArea(commonArea, x[i] + w[i]);
 
-            //Запись в каждый элемент коллекции (т.е. в каждую координату оси)
-            //высоты очередного прямоугольника, но только если она больше
-            //чем уже записанная там.
+            increaseCommonArea(Area, x[i] + w[i]);  //увеличиваем Area, если прямоугольник выходит запределы x
+
+
             for (int j = 0; j < w[i]; j++) {
-                if (commonArea.get(x[i] + j) < h[i]) {
-                    commonArea.set(x[i] + j, h[i]);
+                if (Area.get(x[i] + j) < h[i]) {
+                    Area.set(x[i] + j, h[i]);
                 }
             }
         }
 
-        return sumList(commonArea);
+        return sumList(Area);
     }
 
-    /**
-     * Увиличение размера коллекции
-     * @param area коллекция
-     * @param newSize новый размер коллекции
-     */
+
+
     private void increaseCommonArea(List<Integer> area, int newSize) {
         if (area.size() < newSize) {
             for (int i = area.size(); i < newSize; i++) {
@@ -52,11 +44,9 @@ public class RectangleSquare {
         }
     }
 
-    /**
-     * Сумма элементов коллекции
-     * @param list коллекция
-     * @return сумма элементов
-     */
+
+    // Сумма элементов
+
     private int sumList(List<Integer> list) {
         int result = 0;
         for (int value : list) {
